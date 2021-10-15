@@ -91,7 +91,7 @@ class Car {
      this.tank = this.tank += gallons;
     }
     drive(distance){
-      // const driveMiles = this.tank *  this.milesPerGallon;
+       const driveMiles = this.tank *  this.milesPerGallon;
      this.odometer = this.odometer += distance;
       if (this.tank === 0 ){
 
@@ -114,7 +114,7 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-  constructor (name, age, location){
+  constructor ({name, age, location}){
     this.name = name;
     this.age = age;
     this.location = location;
@@ -212,7 +212,7 @@ class ProjectManager extends Instructor {
    standUp (channel){
     return `${this.name} announces to ${channel}, @channel standy times!`;
    }
-   debugsCode(student, subject){
+   debugsCode(student, subject) {
     return `${this.name} debugs ${student.name}'s code on {subject}`;
    }
 }
