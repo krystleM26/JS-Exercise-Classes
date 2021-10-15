@@ -44,9 +44,9 @@ class Airplane {
 */
 
 class Person {
-  constructor(attributes){
-    this.name= attributes.name;
-    this.age = attributes.age;
+  constructor(name, age){
+    this.name= name;
+    this.age = age;
     this.stomach= [];
     
     }
@@ -57,11 +57,11 @@ class Person {
         
     }
     poop(){
-      this.stomach = [];
+      return this.stomach = [];
 
     }
     toString(){
-      return `${this.name}. ${this.age}`;
+      return `${this.name}, ${this.age}`;
     }
   }
 
@@ -88,11 +88,13 @@ class Car {
     this.odometer = 0;
     }
     fill(gallons){
-      this.tank += gallons;
+     this.tank = this.tank += gallons;
     }
     drive(distance){
-      this.odometer += distance;
-      if (this.tank === 0){
+      // const driveMiles = this.tank *  this.milesPerGallon;
+     this.odometer = this.odometer += distance;
+      if (this.tank === 0 ){
+
         return 'I ran out of fuel at ${this.odometer} miles!';
       }
     }
@@ -111,10 +113,11 @@ class Car {
         + Speaking should return a phrase `Hello my name is {name}, I am from {location}`.
         + {name} and {location} of course come from the instance's own properties.
 */
-class Lambdasian extends Person {
-  constructor (attributes){
-    super(attributes);
-    this.location = attributes.location;
+class Lambdasian {
+  constructor (name, age, location){
+    this.name = name;
+    this.age = age;
+    this.location = location;
   }
 
 speak(){
@@ -137,17 +140,17 @@ speak(){
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 class Instructor extends Lambdasian {
-  constructor (attributes){
-    super(attributes);
-    this.specialty = attributes.specialty;
-    this.favLanguage = attributes.favLanguage;
-    this.catchPhrase = "Don't forget the homies" ;
+  constructor ({name, age, location, specialty, favLanguage, catchPhrase}) {
+    super({name, age, location, specialty, favLanguage, catchPhrase});
+    this.specialty = specialty;
+    this.favLanguage = favLanguage;
+    this.catchPhrase = catchPhrase ;
   }
   demo(subject){
-    return `Today we are learning about ${subject}' where subject is the param passed in`;
+    return `Today we are learning about ${subject}`;
   }
   grade(student, subject){
-    return ' ${student.name} receives a perfect score on ${subject}';
+    return  `${student.name} receives a perfect score on ${subject}`;
   }
 
 
@@ -168,21 +171,21 @@ class Instructor extends Lambdasian {
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 class Student extends Lambdasian {
-   constructor (attributes){
-     super(attributes);
-     this.previousBackground = attributes.previousBackground;
-     this.className = attributes.className;
-     this.favSubjects = attributes.favSubjects;
+   constructor ({name, age, location, className, favSubjects, previousBackground}){
+     super({name, age, location, className, favSubjects, previousBackground});
+     this.previousBackground = previousBackground;
+     this.className = className;
+     this.favSubjects = favSubjects;
    }
    listSubjects (){
      return `Loving ${this.favSubjects}`;
    }
    PRAssignment(subject){
-     return `student.name has submitted a PR for ${subject}`;
+     return `${this.name} has submitted a PR for ${subject}`;
 
    }
    sprintChallenge(subject){
-     return `student.name has begun sprint challenge on ${subject}`;
+     return `${this.name} has begun sprint challenge on ${subject}`;
    }
 }
 
@@ -200,16 +203,21 @@ class Student extends Lambdasian {
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
 class ProjectManager extends Instructor {
-  constructor (attributes){
-    super(attributes);
-    this.gradClassName= attributes.gradClassName;
-    this.favInstructor= attributes.favInstructor;
+  constructor ({name, age, location, specialty, favLanguage, catchPhrase, gradClassName, favInstructor}) {
+    super({name, age, location, specialty, favLanguage, catchPhrase, gradClassName, favInstructor});
+    this.gradClassName= gradClassName;
+    this.favInstructor= favInstructor;
 
   }
-   standup (channel){
-     return `$(this.name) announces to {channel}, @hannel standy times!`;
+   standUp (channel){
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+   }
+   debugsCode(student, subject){
+    return `${this.name} debugs ${student.name}'s code on {subject}`;
    }
 }
+
+
 /*
   STRETCH PROBLEM (no tests!)
     - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
